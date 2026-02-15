@@ -19,6 +19,8 @@ jobs:
         run: |
           sudo apt-get install sshpass
           sudo apt-get install jq
+          sudo apt-get install connect-proxy
+          sudo apt-get install -y netcat-openbsd
 
       - name: 登录各个serv00并执行保活脚本
         env:
@@ -26,10 +28,18 @@ jobs:
           TELEGRAM_TOKEN: ${{secrets.TELEGRAM_TOKEN}}
           TELEGRAM_USERID: ${{secrets.TELEGRAM_USERID}}
           WXSENDKEY: ${{secrets.WXSENDKEY}}
+          WXPUSH_URL: ${{secrets.WXPUSH_URL}}
+          WX_TOKEN: ${{secrets.WX_TOKEN}}
           SENDTYPE: ${{secrets.SENDTYPE}}
           BUTTON_URL: ${{secrets.BUTTON_URL}}
           AUTOUPDATE: ${{vars.AUTOUPDATE}}
           LOGININFO: ${{vars.LOGININFO}}
+          LOGINONCE: ${{vars.LOGINONCE}}
+          PROXY_HOST: ${{secrets.PROXY_HOST}}
+          PROXY_PORT: ${{secrets.PROXY_PORT}}
+          PROXY_USER: ${{secrets.PROXY_USER}}
+          PROXY_PASS: ${{secrets.PROXY_PASS}}
+
         run: |
           chmod +x ./revive.sh
           ./revive.sh
